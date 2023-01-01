@@ -31,16 +31,13 @@ button.addEventListener('click', () => {
     
 });
 
-function showForm(text) {
+function showForm(arg1) {
     let formWindow = window.open('', 'Form Window', 'height=600, width=600 ,toolbar=no, location=no', );
     formWindow.document.write('<html><body>');
     formWindow.document.write('<form>');
     formWindow.document.write('<label for="name">Enter your name:</label><br>');
-    formWindow.document.write('<input type="text" id="name"><br>');
+    formWindow.document.write('<input type="text" id="name" value ="'+ arg1 + '" ><br>');
 
-    formWindow.document.write('<label for="name">Enter your name:</label><br>');
-    formWindow.document.write('<input type="text" id="name"><br>');
-    
     formWindow.document.write('<input type="submit" value="Submit">');
     formWindow.document.write('</form>');
     formWindow.document.write('</body></html>');
