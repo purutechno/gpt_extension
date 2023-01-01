@@ -32,12 +32,15 @@ button.addEventListener('click', () => {
 });
 
 function showForm(text) {
-    formWindow.document.getElementById("name").value = text;
-    let formWindow = window.open('', 'Form Window', 'height=400, width=600 ,toolbar=no, location=no', );
+    let formWindow = window.open('', 'Form Window', 'height=600, width=600 ,toolbar=no, location=no', );
     formWindow.document.write('<html><body>');
     formWindow.document.write('<form>');
     formWindow.document.write('<label for="name">Enter your name:</label><br>');
     formWindow.document.write('<input type="text" id="name"><br>');
+
+    formWindow.document.write('<label for="name">Enter your name:</label><br>');
+    formWindow.document.write('<input type="text" id="name"><br>');
+    
     formWindow.document.write('<input type="submit" value="Submit">');
     formWindow.document.write('</form>');
     formWindow.document.write('</body></html>');
