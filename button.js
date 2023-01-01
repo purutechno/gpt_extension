@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const OPENAI_API_KEY = "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";
 const endPoint = "https://api.openai.com/v1/completions";
 
@@ -81,24 +79,32 @@ function callOpenApi(question){
             "presence_penalty": 0
           };
 
-    axios.post(endPoint, {
-        data: body,
-      }, {
-        headers: headers,
-      }, {
-        withCredentials: true,
-      })
-.then(function (response) {
-  // handle success
-  console.log(response);
-})
-.catch(function (error) {
-  // handle error
-  console.log(error);
-})
-.then(function () {
-  // always executed
-});
+
+          var xhr = new XMLHttpRequest();
+xhr.open("POST", endPoint, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer " + OPENAI_API_KEY);
+let response =xhr.send(JSON.stringify(body));
+
+
+//     axios.post(endPoint, {
+//         data: body,
+//       }, {
+//         headers: headers,
+//       }, {
+//         withCredentials: true,
+//       })
+// .then(function (response) {
+//   // handle success
+//   console.log(response);
+// })
+// .catch(function (error) {
+//   // handle error
+//   console.log(error);
+// })
+// .then(function () {
+//   // always executed
+// });
 }
 
 

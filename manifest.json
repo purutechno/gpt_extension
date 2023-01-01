@@ -25,5 +25,8 @@
         "all_frames": true,
         "css": []
       }
-    ]
+    ],
+      "host_permissions": [
+    "https://*.openai.com/"
+  ]
   }

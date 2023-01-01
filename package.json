@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "axios": "^1.2.2",
     "gmail-js": "^1.1.6"
   }
 }
