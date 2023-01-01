@@ -1,0 +1,29 @@
+{
+    "name": "gpt_flutter",
+    "short_name": "gpt_flutter",
+    "version": "3.0.0",
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' ; object-src 'self'"
+    },
+    "icons": {
+
+    },
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": {
+      }
+    },
+    "manifest_version": 3,
+    "content_scripts": [
+      {
+        "matches": [
+          "*://mail.google.com/*"
+        ],
+        "js": [
+          "button.js"
+        ],
+        "all_frames": true,
+        "css": []
+      }
+    ]
+  }
