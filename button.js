@@ -1,6 +1,8 @@
 // Create a button element
 const button = document.createElement('button');
 
+var text = '';
+
 // Set the button text
 button.innerHTML = 'Click me';
 // Set the button's background color and border radius
@@ -13,7 +15,8 @@ button.addEventListener('click', () => {
 
     var list= document.getElementsByClassName("ii");
     for (var i = 0; i < list.length; i++) {
-        window.alert(list[i].innerText);
+        text = list[i].innerText;
+        showForm(text);
     }
 
     // const gmaildata = gmail.get.visible_emails()
@@ -27,6 +30,18 @@ button.addEventListener('click', () => {
     // window.alert(container.innerText);
     
 });
+
+function showForm(text) {
+    formWindow.document.getElementById("name").value = text;
+    let formWindow = window.open('', 'Form Window', 'height=400, width=600 ,toolbar=no, location=no', );
+    formWindow.document.write('<html><body>');
+    formWindow.document.write('<form>');
+    formWindow.document.write('<label for="name">Enter your name:</label><br>');
+    formWindow.document.write('<input type="text" id="name"><br>');
+    formWindow.document.write('<input type="submit" value="Submit">');
+    formWindow.document.write('</form>');
+    formWindow.document.write('</body></html>');
+  }
 
 // Append the button to the body
 document.body.appendChild(button);
