@@ -27,6 +27,6 @@
       }
     ],
       "host_permissions": [
-    "https://*.openai.com/"
+    "https://*/.openai.com/"
   ]
   }

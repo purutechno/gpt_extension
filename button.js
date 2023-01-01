@@ -1,4 +1,4 @@
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = "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";
 const endPoint = "https://api.openai.com/v1/completions";
 
 
@@ -64,6 +64,7 @@ function showForm(arg1, callback) {
 
 /// Call API
 function callOpenApi(question){
+
     const headers = {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + OPENAI_API_KEY,};
@@ -84,7 +85,15 @@ function callOpenApi(question){
 xhr.open("POST", endPoint, true);
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer " + OPENAI_API_KEY);
-let response =xhr.send(JSON.stringify(body));
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.send(JSON.stringify(body)); 
+
 
 
 //     axios.post(endPoint, {
