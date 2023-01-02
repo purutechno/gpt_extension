@@ -1,4 +1,4 @@
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = "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";
 const endPoint = "https://api.openai.com/v1/completions";
 
 
@@ -40,23 +40,38 @@ function showForm(arg1, callback) {
     let formWindow = window.open('', 'Form Window', 'height=600, width=600 ,toolbar=no, location=no', );
     formWindow.document.write('<html><body>');
     formWindow.document.write('<form>');
+
     formWindow.document.write('<label for="name">Enter your name:</label><br>');
     formWindow.document.write('<input type="text" id="name" value ="'+ arg1 + '" ><br>');
+
     formWindow.document.write('<label for="question">Enter your question:</label><br>');
     formWindow.document.write('<input type="text" id="question"><br>');
-    formWindow.document.write('<input type="submit" value="Submit">');
+
+    formWindow.document.write('<label for="answer">Here is your Answer</label><br>');
+    formWindow.document.write('<input type="text" id="answer"><br>');
+
+    formWindow.document.write('<input id= "generate" type="button" value="Generate">');
+
+    formWindow.document.write('<input id= "submit" type="submit" value="Submit">');
     formWindow.document.write('</form>');
     formWindow.document.write('</body></html>');
 
 
+    formWindow.document.forms[0].addEventListener('generate', async function(event)  {
+      ///Prevents Website Reload
+      event.preventDefault();
+     
+      let userQuestion = formWindow.document.getElementById('question').value;
+      let question = arg1.concat('\n', userQuestion);
+      /// Calling Api
+      const response =  await callOpenApi(question);
+      console.log(response);
+    });
+
     formWindow.document.forms[0].addEventListener('submit', function(event) {
         event.preventDefault();
-       
-        let userQuestion = formWindow.document.getElementById('question').value;
-        let question = arg1.concat('\n', userQuestion);
-        callOpenApi(question);
-        /// Hit API 
-        console.log(question);
+        //todo: Pass the value Back to gamil UI
+
         formWindow.close();
       });
   }
@@ -89,6 +104,7 @@ xhr.setRequestHeader("Authorization", "Bearer " + OPENAI_API_KEY);
 xhr.addEventListener("readystatechange", function() {
   if(this.readyState === 4) {
     console.log(this.responseText);
+    return JSON.parse(this.responseText); 
   }
 });
 
