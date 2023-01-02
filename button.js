@@ -1,4 +1,4 @@
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = "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";
 const endPoint = "https://api.openai.com/v1/completions";
 
 
@@ -50,35 +50,26 @@ function showForm(arg1, callback) {
     formWindow.document.write('<label for="answer">Here is your Answer</label><br>');
     formWindow.document.write('<input type="text" id="answer"><br>');
 
-    formWindow.document.write('<input id= "generate" type="button" value="Generate">');
-
     formWindow.document.write('<input id= "submit" type="submit" value="Submit">');
     formWindow.document.write('</form>');
     formWindow.document.write('</body></html>');
 
 
-    formWindow.document.forms[0].addEventListener('generate', async function(event)  {
-      ///Prevents Website Reload
-      event.preventDefault();
-     
+    formWindow.document.forms[0].addEventListener('submit', function(event) {
+        event.preventDefault();
+    
       let userQuestion = formWindow.document.getElementById('question').value;
       let question = arg1.concat('\n', userQuestion);
       /// Calling Api
-      const response =  await callOpenApi(question);
-      console.log(response);
-    });
-
-    formWindow.document.forms[0].addEventListener('submit', function(event) {
-        event.preventDefault();
-        //todo: Pass the value Back to gamil UI
-
-        formWindow.close();
+      callOpenApi(question, (value)=> {
+        formWindow.document.getElementById('answer').value = 'Hawa Value';
+      });
       });
   }
 
 
 /// Call API
-function callOpenApi(question){
+function callOpenApi(question ,callback){
 
     const headers = {
         "Content-Type": "application/json",
@@ -103,8 +94,10 @@ xhr.setRequestHeader("Authorization", "Bearer " + OPENAI_API_KEY);
 
 xhr.addEventListener("readystatechange", function() {
   if(this.readyState === 4) {
-    console.log(this.responseText);
-    return JSON.parse(this.responseText); 
+const parsedText = JSON.parse(this.responseText);
+console.log(parsedText);
+    callback(parsedText);
+ 
   }
 });
 
